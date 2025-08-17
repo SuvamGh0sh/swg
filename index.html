@@ -457,5 +457,47 @@
       </div>
     </div>
   </footer>
+  <script>
+    // Light/Dark mode with localStorage
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light'){ root.classList.add('light'); }
+    toggle?.addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Role ticker
+    const roles = ['Developer', 'Designer', 'Innovator'];
+    const roleText = document.getElementById('roleText');
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % roles.length;
+      roleText.textContent = roles[i];
+    }, 1800);
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('show');
+      })
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // Contact form handler (demo only)
+    function handleSubmit(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form).entries());
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Thanks, ' + data.name + '! I will get back to you soon.';
+      form.reset();
+      return false;
+    }
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script> 
 </body>
 </html>
