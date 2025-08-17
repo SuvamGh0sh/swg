@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suvam Ghosh • Portfolio</title>
+  <meta name="description" content="Portfolio of Suvam Ghosh — Tech Enthusiast, Innovator, Problem Solver." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0a0a0a;
+      --bg-soft: #1a1a1a;
+      --text: #f0f0f0;
+      --text-dim: #888888;
+      --brand: #ff4757;
+      --brand-2:#e056fd;
+      --accent: #ff6b81;
+      --card:#1f1f1f;
+      --border:#2f2f2f;
+      --shadow: 0 20px 40px rgba(0,0,0,.4);
+      --radius: 16px;
+      --ring: 0 0 0 3px rgba(255, 71, 87, .35);
+    }
+    .light{
+      --bg:#f8fafc;
+      --bg-soft:#ffffff;
+      --text:#0b1220;
+      --text-dim:#3e4a5e;
+      --brand:#2563eb;
+      --brand-2:#9333ea;
+      --accent:#0ea5e9;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --shadow: 0 12px 30px rgba(2,6,23,.08);
+      --ring: 0 0 0 3px rgba(37,99,235,.2);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:var(--bg); color:var(--text);
+    }
+    /* Animated gradient backdrop */
+    .backdrop{
+      position:fixed; inset:0; z-index:-1;
+      background: radial-gradient(1200px 700px at 10% 10%, rgba(110,231,255,.12), transparent 60%),
+                  radial-gradient(900px 600px at 90% 30%, rgba(147,51,234,.12), transparent 60%),
+                  radial-gradient(1000px 600px at 30% 90%, rgba(34,211,238,.10), transparent 60%),
+                  linear-gradient(180deg, var(--bg), var(--bg));
+      filter:saturate(1.2);
+      pointer-events:none;
+      animation:bgshift 18s ease-in-out infinite alternate;
+    }
+    @keyframes bgshift { to { filter:saturate(1.4) hue-rotate(15deg); } }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px);
+      background:color-mix(in oklab, var(--bg), transparent 40%);
+      border-bottom:1px solid var(--border);
+    }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px; }
+    .nav{ display:flex; align-items:center; justify-content:space-between; height:70px; }
+    .brand{ display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.3px; }
+    .brand-badge{
+      width:36px; height:36px; border-radius:12px; display:grid;place-items:center; font-weight:800;
+      background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#001018; box-shadow:var(--shadow);
+    }
+    nav ul{ display:flex; gap:16px; list-style:none; padding:0; margin:0; align-items:center; }
+    nav a{ color:var(--text-dim); text-decoration:none; font-weight:600; padding:10px 12px; border-radius:12px; }
+    nav a:hover{ color:var(--text); background:color-mix(in oklab, var(--brand), transparent 85%); }
+
+    .toggle{
+      border:1px solid var(--border); background:var(--card); color:var(--text);
+      padding:8px 12px; border-radius:999px; cursor:pointer; font-weight:600;
+      box-shadow:var(--shadow);
+    }
+    .toggle:focus-visible{ outline:none; box-shadow:var(--ring); }
+
+    /* Hero */
+    .hero{ display:grid; grid-template-columns: 1.1fr .9fr; gap:32px; align-items:center; padding:90px 0 40px; }
+    .hero h1{ font-size:clamp(32px, 4vw, 52px); margin:0 0 10px; line-height:1.05; }
+    .tagline{ color:var(--text-dim); font-weight:600; letter-spacing:.3px; }
+    .lead{ color:var(--text-dim); font-size:1.05rem; line-height:1.6; margin:18px 0 24px; }
+    .cta{ display:flex; gap:12px; align-items:center; }
+    .btn{
+      display:inline-flex; gap:8px; align-items:center; border:1px solid var(--border);
+      text-decoration:none; color:var(--text); background:linear-gradient(135deg, color-mix(in oklab, var(--brand), transparent 70%), color-mix(in oklab, var(--brand-2), transparent 65%));
+      padding:12px 16px; border-radius:14px; font-weight:700; box-shadow:var(--shadow);
+    }
+    .btn:hover{ transform:translateY(-1px); }
+    .subtle{ background:var(--card); color:var(--text); }
+
+    .portrait{
+      width:100%; aspect-ratio:1; border-radius:24px; overflow:hidden; border:1px solid var(--border); background:var(--card);
+      box-shadow:var(--shadow); position:relative;
+    }
+    .portrait::after{
+      content:""; position:absolute; inset:auto -30% -30% auto; width:70%; height:70%; filter:blur(40px); opacity:.45;
+      background:conic-gradient(from 120deg at 30% 30%, var(--brand), var(--brand-2), var(--accent), transparent 60%);
+    }
+    .portrait img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .ticker{ display:inline-block; min-width:210px; font-weight:800; }
+    .ticker .cursor{ opacity:.6 }
+
+    section{ padding:72px 0; }
+    .section-title{ font-size:28px; margin:0 0 18px; }
+    .grid{ display:grid; gap:16px; }
+
+    /* Cards */
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); }
+    .card h3{ margin:0 0 8px; font-size:18px; }
+    .muted{ color:var(--text-dim); }
+
+    /* About */
+    .skills{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .skill{ background:var(--bg-soft); border:1px dashed var(--border); padding:14px; border-radius:12px; }
+    .bar{ width:100%; height:10px; background:color-mix(in oklab, var(--text-dim), transparent 85%); border-radius:999px; overflow:hidden; margin-top:8px; }
+    .bar > span{ display:block; height:100%; background:linear-gradient(90deg, var(--brand), var(--brand-2)); }
+
+    /* Timeline */
+    .timeline{ position:relative; padding-left:30px; }
+    .timeline::before{ content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:var(--border); }
+    .tl-item{ position:relative; margin:24px 0; }
+    .tl-item::before{ content:""; position:absolute; left:-6px; top:8px; width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 4px color-mix(in oklab, var(--brand), transparent 80%); }
+
+    /* Interests */
+    .interests{ display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:12px; }
+    .chip{
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-soft);
+      font-weight: 700; text-decoration: none; color: var(--text);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .chip:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      color: var(--accent);
+    }
+    .chip img { width: 20px; height: 20px; border-radius: 50%; }
+
+    /* Services */
+    .services{ grid-template-columns:repeat(3,1fr); }
+
+    /* Projects */
+    .projects{ grid-template-columns:repeat(3,1fr); }
+    .project{ overflow:hidden; }
+    .project .thumb{ aspect-ratio:16/10; background:#0b1220; border-radius:12px; overflow:hidden; border:1px solid var(--border); margin-bottom:12px; display:grid; place-items:center; }
+    .project .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .project a{ color:var(--accent); text-decoration:none; font-weight:700; }
+
+    /* Achievements */
+    .achievements{ grid-template-columns:repeat(3,1fr); }
+
+    /* Contact */
+    form{ display:grid; gap:12px; }
+    input, textarea{
+      background:var(--bg-soft); border:1px solid var(--border); color:var(--text);
+      padding:12px 14px; border-radius:12px; font:inherit;
+    }
+    input:focus, textarea:focus{ outline:none; box-shadow:var(--ring); }
+
+    footer{ padding:36px 0; color:var(--text-dim); border-top:1px solid var(--border); }
+
+    /* Scroll reveal */
+    .reveal{ opacity:0; transform:translateY(10px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.show{ opacity:1; transform:none; }
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero{ grid-template-columns: 1fr; }
+      .skills{ grid-template-columns:repeat(2,1fr); }
+      .interests{ grid-template-columns:repeat(3,1fr); }
+      .services{ grid-template-columns:1fr; }
+      .projects{ grid-template-columns:1fr 1fr; }
+      .achievements{ grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width: 600px){
+      nav ul{ display:none; }
+      .projects, .achievements{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+  <header>
+    <div class="container nav">
+      <div class="brand" aria-label="Suvam Ghosh, Tech Enthusiast • Innovator • Problem Solver">
+        <div class="brand-badge">SG</div>
+        <div>
+          <div style="font-size:1.05rem">Suvam Ghosh</div>
+          <div class="tagline" style="font-size:.8rem">Tech Enthusiast • Innovator • Problem Solver</div>
+        </div>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#education">Education & Qualifications</a></li>
+          <li><a href="#interests">Interests</a></li>
+          <li><a href="#services">Offerings</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="toggle" id="themeToggle" aria-label="Toggle light/dark mode">🌗</button>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <!-- Hero -->
+    <section class="hero reveal">
+      <div>
+        <h1>Hi, I’m <span style="background:linear-gradient(90deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Suvam</span>.</h1>
+        <p class="tagline" style="font-weight:800; font-size:1.05rem;">IIT Kharagpur • Manufacturing Department</p>
+        <p class="lead">I merge technology and creativity to build impactful projects. <span class="ticker" aria-live="polite"><span id="roleText">Developer</span><span class="cursor">▍</span></span></p>
+        <div class="cta">
+          <a class="btn" href="#projects">🚀 View My Work</a>
+          <a class="btn subtle" href="#contact">📬 Contact Me</a>
+        </div>
+      </div>
+      <div>
+        <figure class="portrait" aria-label="Professional photo placeholder">
+          
+          <img src="profile.jpg" alt="Suvam Ghosh portrait placeholder" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="reveal">
+      <h2 class="section-title">About Me</h2>
+      <div class="grid" style="grid-template-columns: 1.2fr .8fr;">
+        <div class="card">
+          <p>I'm Suvam Ghosh, a competitive coder and tech enthusiast from IIT Kharagpur (Manufacturing Science and Engineering). I love solving challenging problems in <strong>DSA</strong>, crafting clean and performant <strong>web apps</strong>, and collaborating on ideas that make a difference. When I’m not debugging, you’ll find me exploring photography, reading, or watching anime.</p>
+          <p class="muted">Open to internships, freelance web projects, and collaboration on impactful tech.</p>
+        </div>
+        <div class="card">
+          <h3>Skills</h3>
+          <div class="skills" role="list">
+            <div class="skill" role="listitem">
+              <strong>Java</strong>
+              <div class="bar" aria-label="Java proficiency 85%"><span style="width:85%"></span></div>
+            </div>
+            <div class="skill" role="listitem">
+              <strong>DSA</strong>
+              <div class="bar" aria-label="DSA proficiency 80%"><span style="width:80%"></span></div>
+            </div>
+            <div class="skill" role="listitem">
+              <strong>Web Development</strong>
+              <div class="bar" aria-label="Web proficiency 75%"><span style="width:75%"></span></div>
+            </div>
+            <div class="skill" role="listitem">
+              <strong>JavaScript</strong>
+              <div class="bar" aria-label="JS proficiency 70%"><span style="width:70%"></span></div>
+            </div>
+            <div class="skill" role="listitem">
+              <strong>UI/UX</strong>
+              <div class="bar" aria-label="UI proficiency 65%"><span style="width:65%"></span></div>
+            </div>
+            <div class="skill" role="listitem">
+              
+              <div class="bar" aria-label="Git proficiency 25%"><span style="width:75%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr); margin-top:16px;">
+        <div class="card"><h3>Fun Facts</h3><p class="muted">Anime nerd • Loves hackathons • Tea over coffee.</p></div>
+        <div class="card"><h3>What I value</h3><p class="muted">Clarity, craftsmanship, and shipping fast.</p></div>
+        <div class="card"><h3>Currently</h3><p class="muted">Learning AI and ML and improving problem-solving speed.</p></div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="reveal">
+      <h2 class="section-title">Education & Qualifications</h2>
+      <div class="card timeline">
+        <div class="tl-item">
+          <h3>  IIT Kharagpur — Mechanical Department</h3>
+          <p class="muted">  Undergraduate • Present</p>
+        </div>
+        <div class="tl-item">
+          <h3> ISC — 97% Computer Section Topper</h3>
+          <p class="muted"> Class XII • 2025 </p>
+        </div>
+        <div class="tl-item">
+          <h3>ICSE — 98.6% School Topper</h3>
+          <p class="muted">Class X • 2023</p>
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr); margin-top:16px;">
+        <div class="card">
+          <h3>Certificates</h3>
+          <ul class="muted" style="padding-left: 20px; margin-top: 8px; line-height: 1.6;">
+            <li>Badminton Prize – School competition winner.</li>
+            <li>Bosco Xprezens – Participant.</li>
+            <li>Bosco Science Exhibition – Presenter.</li>
+            <li>Startup Competition – Participant.</li>
+            <li>Bosco Utsav Coding – 3rd place.</li>
+          </ul>
+          <img src="coding.jpg" alt="Coding Competition" style="width:100%; border-radius:12px; margin-top:12px;"/>
+        </div>
+        <div class="card">
+          <h3>Awards</h3>
+          <p class="muted" style="line-height: 1.6;">
+            Winner – Interschool Coding Competition<br>
+            Silver Medal – SilverZone Foundation Olympiad<br>
+            Winner – Intra-School Quiz Competition<br>
+            Winner – Science Exhibition (Problem-Solving)<br>
+            Subject Topper – Physics
+          </p>
+          <img src="prize.jpg" alt="Prize" style="width:100%; border-radius:12px; margin-top:12px;"/>
+        </div>
+        <div class="card">
+          <h3>Highlights</h3>
+          <p class="muted" style="line-height: 1.6;">
+            7th Rank – ICSE Board Examination<br>
+            First IITian from My Locality<br>
+            From Average Student to Achiever
+          </p>
+          <img src="rank.jpg" alt="Rank" style="width:100%; border-radius:12px; margin-top:12px;"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interests -->
+    <section id="interests" class="reveal">
+      <h2 class="section-title">Interests</h2>
+      <div class="interests">
+        <a href="https://leetcode.com/profile/suvamghosh" target="_blank" rel="noopener" class="chip">
+          <img src="coding.jpg" alt="Coding icon"/>
+          <span>Competitive Coding</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="chip">
+          <img src="photography.jpg" alt="Photography icon"/>
+          <span>Photography</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="chip">
+          <img src="webdev.jpg" alt="Web Development icon"/>
+          <span>Web Development</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="chip">
+          <img src="coolab.jpg" alt="Collaboration icon"/>
+          <span>Tech Projects</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="chip">
+          <img src="reading.jpg" alt="Reading icon"/>
+          <span>Reading</span>
+        </a>
+        <a href="#" target="_blank" rel="noopener" class="chip">
+          <img src="anime.jpg" alt="Anime icon"/>
+          <span>Anime</span>
+        </a>
+        <a href="https://github.com/suvamghosh" target="_blank" rel="noopener" class="chip">
+          <img src="internet.jpg" alt="Open Source icon"/>
+          <span>Open Source</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="reveal">
+      <h2 class="section-title">Offerings / Services</h2>
+      <div class="grid services">
+        <div class="card"><h3>Web Development</h3><p class="muted">Clean, responsive, fast websites and dashboards.</p></div>
+        <div class="card"><h3>DSA Mentoring</h3><p class="muted">Help with problem-solving and contests.</p></div>
+        <div class="card"><h3>Project Collaboration</h3><p class="muted">Bring your idea — let's build it together.</p></div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="reveal">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid projects">
+        <article class="card project">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop" alt="Project thumbnail"/></div>
+          <h3>Banking project</h3>
+          <p class="muted">A banking app that allows users to transfer money, check
+          balances, and view transaction history.</p>
+          <p><a href="#">Live Demo</a> • <a href="#">GitHub</a></p>
+        </article>
+        <article class="card project">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" alt="Project thumbnail"/></div>
+          <h3>Hospital management system</h3>
+          <p class="muted">A hospital management system that allows users to book appointments,
+          check doctor availability,
+          manage patient records, and view medical history.</p>
+          <p><a href="#">Live Demo</a> • <a href="#">GitHub</a></p>
+        </article>
+        <article class="card project">
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="Project thumbnail"/></div>
+          <h3>Interschool tech event management system</h3>
+          <p class="muted">A web app to manage interschool tech events, including
+          registrations, schedules, and results.</p>
+        
+          <p class="muted">What problem it solves and your role.</p>
+          <p><a href="#">Live Demo</a> • <a href="#">GitHub</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="reveal">
+      <h2 class="section-title">Achievements</h2>
+      <div class="grid achievements">
+        <div class="card"><h3>Competitive Coding</h3><p class="muted">Add ratings, ranks, or medals (Codeforces, LeetCode, ICPC, etc.).</p></div>
+        <div class="card"><h3>School Competitions</h3><p class="muted">Science fairs, olympiads, hackathons, etc.</p></div>
+        <div class="card"><h3>Other Highlights</h3><p class="muted">Scholarships, leadership roles, publications.</p></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="reveal">
+      <h2 class="section-title">Contact</h2>
+      <div class="grid" style="grid-template-columns:1.1fr .9fr;">
+        <div class="card">
+          <form name="contact" onsubmit="return handleSubmit(event)">
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="5" placeholder="How can I help?" required></textarea>
+            </label>
+            <button class="btn" type="submit">Send Message</button>
+            <p id="formStatus" class="muted" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Find me online</h3>
+          <p>
+            <a class="btn subtle" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn subtle" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn subtle" href="suvam1061/a>
+          </p>
+          <p class="muted">Add a resume link here → <a href="#" class="muted" style="text-decoration:underline;">Download Resume (PDF)</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <p>© <span id="year"></span> Suvam Ghosh. All rights reserved.</p>
+        <a class="muted" href="#home">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Light/Dark mode with localStorage
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'light'){ root.classList.add('light'); }
+    toggle?.addEventListener('click', () => {
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Role ticker
+    const roles = ['Developer', 'Designer', 'Innovator'];
+    const roleText = document.getElementById('roleText');
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % roles.length;
+      roleText.textContent = roles[i];
+    }, 1800);
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('show');
+      })
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // Contact form handler (demo only)
+    function handleSubmit(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form).entries());
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Thanks, ' + data.name + '! I will get back to you soon.';
+      form.reset();
+      return false;
+    }
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
