@@ -6,7 +6,7 @@
   <title>Suvam Ghosh • Portfolio</title>
   <meta name="description" content="Portfolio of Suvam Ghosh — Tech Enthusiast, Innovator, Problem Solver." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" re l="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg: #0a0a0a;
@@ -64,11 +64,11 @@
     .nav{ display:flex; align-items:center; justify-content:space-between; height:70px; }
     .brand{ display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.3px; }
     .brand-badge{
-      width:36px; height:36px; border-radius:12px; display:grid;place-items:center; font-weight:800;
+      width:25px; height: 25px; border-radius: 30px; display:grid;place-items:center; font-weight:800;
       background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#001018; box-shadow:var(--shadow);
     }
     nav ul{ display:flex; gap:16px; list-style:none; padding:0; margin:0; align-items:center; }
-    nav a{ color:var(--text-dim); text-decoration:none; font-weight:600; padding:10px 12px; border-radius:12px; }
+    nav a{ color:var(--text-dim); text-decoration:none; font-weight:600; padding:10px 10px; border-radius:12px; }
     nav a:hover{ color:var(--text); background:color-mix(in oklab, var(--brand), transparent 85%); }
 
     .toggle{
@@ -110,8 +110,12 @@
     .grid{ display:grid; gap:16px; }
 
     /* Cards */
-    .card{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); }
-    .card h3{ margin:0 0 8px; font-size:18px; }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:10px; padding-bottom: -10px; box-shadow:var(--shadow); }
+    .card h3{ margin:0 0 0px; font-size:18px; }
+    .card1{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); }
+    .card1 h3{ margin:0 0 8px; font-size:18px; }
+    .card2{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); }
+    .card2 h3{ margin:0 0 0; font-size:18px; }
     .muted{ color:var(--text-dim); }
 
     /* About */
@@ -122,9 +126,8 @@
 
     /* Timeline */
     .timeline{ position:relative; padding-left:30px; }
-    .timeline::before{ content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:var(--border); }
-    .tl-item{ position:relative; margin:24px 0; }
-    .tl-item::before{ content:""; position:absolute; left:-6px; top:8px; width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 4px color-mix(in oklab, var(--brand), transparent 80%); }
+    .tl-item{ position:relative; margin:24px 100px; }
+    .tl-item::before{ content:""; position:absolute; left:-60px; top:8px; width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 4px color-mix(in oklab, var(--brand), transparent 80%); }
 
     /* Interests */
     .interests{ display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:12px; }
@@ -292,7 +295,7 @@
           <p class="muted">Class X • 2023</p>
         </div>
       </div>
-      <div class="grid" style="grid-template-columns:repeat(3,1fr); margin-top:16px;">
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)"; margin-top:16px;">
         <div class="card">
           <h3>Certificates</h3>
           <ul class="muted" style="padding-left: 20px; margin-top: 8px; line-height: 1.6;">
@@ -302,9 +305,9 @@
             <li>Startup Competition – Participant.</li>
             <li>Bosco Utsav Coding – 3rd place.</li>
           </ul>
-          <img src="coding.jpg" alt="Coding Competition" style="width:100%; border-radius:12px; margin-top:12px;"/>
+          <img src="coding.jpg" alt="Coding Competition" style="width:100% "; border-radius:12px; margin-top:12px;"/>
         </div>
-        <div class="card">
+        <div class="card1">
           <h3>Awards</h3>
           <p class="muted" style="line-height: 1.6;">
             Winner – Interschool Coding Competition<br>
@@ -313,9 +316,9 @@
             Winner – Science Exhibition (Problem-Solving)<br>
             Subject Topper – Physics
           </p>
-          <img src="prize.jpg" alt="Prize" style="width:100%; border-radius:12px; margin-top:12px;"/>
+          <img src="prize.jpg" alt="Prize" style="width:100% ;height:35%; border-radius:12px; margin-top:12px;"/>
         </div>
-        <div class="card">
+        <div class="card2">
           <h3>Highlights</h3>
           <p class="muted" style="line-height: 1.6;">
             7th Rank – ICSE Board Examination<br>
@@ -407,9 +410,13 @@
     <section id="achievements" class="reveal">
       <h2 class="section-title">Achievements</h2>
       <div class="grid achievements">
-        <div class="card"><h3>Competitive Coding</h3><p class="muted">won a intra school coding competition and won thrid price in bosco utsav hackathon</p></div>
-        <div class="card"><h3>School Competitions</h3><p class="muted"> Actively participated inScience fairs, olympiads, hackathons, etc.</p></div>
-        <div class="card"><h3>Other Highlights</h3><p class="muted">Scholarships, leadership roles, publications.</p></div>
+        <div class="card"><h3>Competitive Coding</h3><p class="muted"> Won intra school coding competitions, improving ranking on leetcode day by day on LeetCode.</p></div>
+
+        </div>
+        <div class="card"><h3>School Competitions</h3><p class="muted"> participated in 
+          Science fairs, olympiads, hackathons, etc.</p></div>
+        <div class="card"><h3>Other Highlights</h3><p class="muted"> Managed many school intra snd inter school events
+          .</p></div>
       </div>
     </section>
 
@@ -457,6 +464,7 @@
       </div>
     </div>
   </footer>
+
   <script>
     // Light/Dark mode with localStorage
     const root = document.documentElement;
